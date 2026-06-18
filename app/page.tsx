@@ -73,15 +73,6 @@ export default function HomePage() {
           <p className="mt-5 text-lg text-cream/80 max-w-xl leading-relaxed">
             {siteConfig.subTagline}
           </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a
-              href={siteConfig.phoneHref}
-              className="inline-flex items-center gap-2 rounded-full bg-gold px-8 py-4 text-lg font-bold text-ink shadow-lg shadow-gold/30 hover:bg-gold-dark hover:scale-[1.02] transition-all"
-            >
-              <PhoneIcon className="h-5 w-5" />
-              חייגו עכשיו {siteConfig.phoneDisplay}
-            </a>
-          </div>
           <p className="mt-6 text-sm text-cream/60">{siteConfig.hoursLong}</p>
         </div>
       </section>
@@ -291,6 +282,15 @@ export default function HomePage() {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* Floating call button */}
+      <a
+        href={siteConfig.phoneHref}
+        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 inline-flex items-center gap-2 rounded-full bg-gold px-8 py-4 text-lg font-bold text-ink shadow-xl shadow-gold/40 hover:bg-gold-dark hover:scale-[1.04] transition-all"
+      >
+        <PhoneIcon className="h-5 w-5" />
+        חייגו עכשיו {siteConfig.phoneDisplay}
+      </a>
     </>
   );
 }
