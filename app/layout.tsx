@@ -2,10 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { Heebo, Rubik } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { siteConfig } from "@/lib/site-config";
+import { services, siteConfig } from "@/lib/site-config";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import StickyContactBar from "@/components/StickyContactBar";
+import FloatingCallButton from "@/components/FloatingCallButton";
 
 const heebo = Heebo({
   variable: "--font-heebo",
@@ -75,6 +75,7 @@ export const metadata: Metadata = {
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "Locksmith",
+  "@id": `${siteConfig.domain}/#business`,
   name: siteConfig.name,
   alternateName: siteConfig.nameEn,
   description: siteConfig.subTagline,
@@ -106,6 +107,19 @@ const localBusinessJsonLd = {
     opens: "00:00",
     closes: "23:59",
   },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "שירותי מנעולנות",
+    itemListElement: services.map((s) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: s.name,
+        description: s.short,
+        url: `${siteConfig.domain}/services#${s.slug}`,
+      },
+    })),
+  },
 };
 
 export default function RootLayout({
@@ -125,7 +139,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
-
+        <FloatingCallButton />
       </body>
     </html>
   );

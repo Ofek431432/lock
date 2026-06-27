@@ -3,7 +3,7 @@ import Script from "next/script";
 import { serviceAreas, siteConfig } from "@/lib/site-config";
 import { breadcrumbJsonLd } from "@/lib/json-ld";
 import ScrollReveal from "@/components/ScrollReveal";
-import { BadgeCheckIcon, ClockIcon, MapPinIcon, PhoneIcon } from "@/components/icons";
+import { BadgeCheckIcon, ClockIcon, MapPinIcon, PhoneIcon, WhatsappIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "צור קשר — התקשרו אלינו",
@@ -51,6 +51,17 @@ export default function ContactPage() {
                 <PhoneIcon className="h-5 w-5" />
                 {siteConfig.phoneDisplay}
               </a>
+              <div>
+                <a
+                  href={siteConfig.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#25D366] px-7 py-3 text-base font-bold text-white shadow-md hover:brightness-105 transition-all"
+                >
+                  <WhatsappIcon className="h-5 w-5" />
+                  כתבו לנו בווטסאפ
+                </a>
+              </div>
             </div>
           </ScrollReveal>
 

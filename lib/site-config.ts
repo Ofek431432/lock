@@ -19,6 +19,9 @@ export const siteConfig = {
   subTagline: "פריצה, החלפת מנעולים, כספות וחירום — בחיפה, הקריות, נשר, עתלית וטירת כרמל",
   phoneDisplay: "050-2181886",
   phoneHref: "tel:0502181886",
+  whatsappHref:
+    "https://wa.me/972502181886?text=" +
+    encodeURIComponent("שלום, אני מעוניין/ת בשירות מנעולן"),
   domain: "https://ofek-lock.com",
   hoursShort: "זמינים 24/7, כולל חירום",
   hoursLong: "זמינים 24 שעות ביממה, 7 ימים בשבוע — כולל קריאות חירום בלילה ובסופי שבוע",
