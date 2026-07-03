@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import Script from "next/script";
 import { serviceAreas, siteConfig, stats } from "@/lib/site-config";
@@ -120,12 +121,13 @@ export default function AboutPage() {
               </p>
               <div className="mt-5 flex flex-wrap gap-2.5">
                 {serviceAreas.map((a) => (
-                  <span
+                  <Link
                     key={a.slug}
-                    className="rounded-full bg-white/5 ring-1 ring-white/10 px-4 py-2 text-sm font-semibold text-cream/90"
+                    href={`/areas/${a.slug}`}
+                    className="rounded-full bg-white/5 ring-1 ring-white/10 px-4 py-2 text-sm font-semibold text-cream/90 hover:bg-white/10 hover:text-gold transition-colors"
                   >
-                    {a.name}
-                  </span>
+                    מנעולן ב{a.name}
+                  </Link>
                 ))}
               </div>
             </div>

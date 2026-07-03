@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const articleRoutes = articles.map((article) => ({
     url: `${siteConfig.domain}/articles/${article.slug}`,
     lastModified: new Date(article.updatedAt),
-    changeFrequency: "yearly" as const,
+    changeFrequency: "weekly" as const,
     priority: 0.6,
   }));
 

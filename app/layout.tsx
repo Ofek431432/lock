@@ -137,7 +137,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 pb-32 sm:pb-0">{children}</main>
         <Footer />
         <FloatingCallButton />
       </body>

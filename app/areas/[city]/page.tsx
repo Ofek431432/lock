@@ -5,7 +5,7 @@ import Script from "next/script";
 import { getAreaBySlug, serviceAreas, services, siteConfig } from "@/lib/site-config";
 import { breadcrumbJsonLd } from "@/lib/json-ld";
 import ScrollReveal from "@/components/ScrollReveal";
-import { CheckIcon, PhoneIcon } from "@/components/icons";
+import { CheckIcon, PhoneIcon, WhatsappIcon } from "@/components/icons";
 
 export function generateStaticParams() {
   return serviceAreas.map((a) => ({ city: a.slug }));
@@ -48,6 +48,23 @@ export default async function AreaPage({
     { name: `מנעולן ב${area.name}`, path: `/areas/${area.slug}` },
   ]);
 
+  const areaBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Locksmith",
+    "@id": `${siteConfig.domain}/areas/${area.slug}/#business`,
+    name: `${siteConfig.name} — מנעולן ב${area.name}`,
+    url: `${siteConfig.domain}/areas/${area.slug}`,
+    telephone: siteConfig.phoneHref.replace("tel:", ""),
+    areaServed: { "@type": "City", name: area.name },
+    address: { "@type": "PostalAddress", addressLocality: area.name, addressCountry: "IL" },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      opens: "00:00",
+      closes: "23:59",
+    },
+  };
+
   const whyHere = [
     `הגעה מהירה לכל שכונה ב${area.name}, כולל קריאות חירום בשעות הלילה`,
     "מענה אנושי ישיר בטלפון — בלי מענות אוטומטיות מתישות",
@@ -62,6 +79,12 @@ export default async function AreaPage({
         type="application/ld+json"
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJson) }}
+      />
+      <Script
+        id={`business-jsonld-area-${area.slug}`}
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(areaBusinessJsonLd) }}
       />
 
       <section className="bg-gradient-to-b from-ink to-surface text-cream">
@@ -78,6 +101,15 @@ export default async function AreaPage({
             >
               <PhoneIcon className="h-4 w-4" />
               {siteConfig.phoneDisplay}
+            </a>
+            <a
+              href={siteConfig.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-bold text-white shadow-md hover:brightness-105 transition-all"
+            >
+              <WhatsappIcon className="h-4 w-4" />
+              ווטסאפ
             </a>
           </div>
         </div>
