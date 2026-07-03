@@ -68,7 +68,7 @@ export default function HomePage() {
         />
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-28">
           <h1 className="text-3xl sm:text-5xl font-extrabold leading-tight max-w-3xl">
-            {siteConfig.name} — מנעולן מקצועי בשירותך 24/7
+            מנעולן בחיפה והקריות — {siteConfig.name}, זמין 24/7
           </h1>
           <p className="mt-5 text-lg text-cream/80 max-w-xl leading-relaxed">
             {siteConfig.subTagline}
@@ -163,6 +163,32 @@ export default function HomePage() {
                   </span>
                   <h3 className="mt-4 font-bold text-cream">{item.title}</h3>
                   <p className="mt-1.5 text-sm text-cream/65 leading-relaxed">{item.text}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing transparency */}
+      <section className="bg-white border-b border-charcoal/5">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16">
+          <ScrollReveal>
+            <h2 className="text-2xl sm:text-3xl font-bold text-charcoal">מחיר הוגן ושקוף — בלי הפתעות</h2>
+            <p className="mt-3 text-charcoal/70 max-w-2xl leading-relaxed">
+              אנחנו לא מאמינים בהפתעות בתשלום. לפני כל עבודה — נסביר מה הבעיה, מה הפתרון ומה העלות. מחיר הגעה ברור, מחיר עבודה ברור, ואין חיובים נסתרים.
+            </p>
+          </ScrollReveal>
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            {[
+              { title: "מחיר הגעה קבוע", text: "דמי הגעה אחידים לכל קריאה — יודעים מראש, בלי הפתעות." },
+              { title: "הצעת מחיר לפני העבודה", text: "לפני שמתחילים — מסבירים ומאשרים איתכם. לא מתחילים בלי אישור." },
+              { title: "אחריות על כל עבודה", text: "כל החלפה, תיקון או פתיחה מגיעים עם אחריות מלאה על החלקים ועל ההתקנה." },
+            ].map((item, i) => (
+              <ScrollReveal key={item.title} delay={i * 80}>
+                <div className="rounded-xl bg-ivory ring-1 ring-charcoal/5 p-5">
+                  <p className="font-bold text-charcoal">{item.title}</p>
+                  <p className="mt-1.5 text-sm text-charcoal/70 leading-relaxed">{item.text}</p>
                 </div>
               </ScrollReveal>
             ))}

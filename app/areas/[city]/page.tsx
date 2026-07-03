@@ -128,6 +128,54 @@ export default async function AreaPage({
             ))}
           </div>
 
+          {/* Service + city keyword sections */}
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            <ScrollReveal>
+              <div className="rounded-xl bg-white ring-1 ring-charcoal/10 p-6 shadow-sm">
+                <h2 className="text-lg font-bold text-charcoal">פתיחת דלתות ב{area.name}</h2>
+                <p className="mt-2 text-sm text-charcoal/70 leading-relaxed">
+                  ננעלתם מבחוץ? אנחנו מגיעים לכל כתובת ב{area.name} במהירות ופותחים דלתות בלי לפגוע בדלת או במנעול. שירות {siteConfig.hoursShort}.
+                </p>
+                <a href={siteConfig.phoneHref} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-gold-dark hover:underline">
+                  <PhoneIcon className="h-3.5 w-3.5" /> התקשרו עכשיו
+                </a>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={60}>
+              <div className="rounded-xl bg-white ring-1 ring-charcoal/10 p-6 shadow-sm">
+                <h2 className="text-lg font-bold text-charcoal">החלפת מנעולים ב{area.name}</h2>
+                <p className="mt-2 text-sm text-charcoal/70 leading-relaxed">
+                  החלפת צילינדרים ומנעולים לכל סוגי הדלתות ב{area.name} — מבסיסי ועד high-security. מחיר הוגן, מסירת כל המפתחות, ואחריות על העבודה.
+                </p>
+                <a href={siteConfig.phoneHref} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-gold-dark hover:underline">
+                  <PhoneIcon className="h-3.5 w-3.5" /> לקבלת מחיר
+                </a>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={120}>
+              <div className="rounded-xl bg-white ring-1 ring-charcoal/10 p-6 shadow-sm">
+                <h2 className="text-lg font-bold text-charcoal">מנעולן לרכב ב{area.name}</h2>
+                <p className="mt-2 text-sm text-charcoal/70 leading-relaxed">
+                  ננעלתם מחוץ לרכב ב{area.name}? פותחים רכבים בלי נזק, בכל שעה. גם שכפול מפתח ותיקון מנגנוני נעילה לרכב.
+                </p>
+                <a href={siteConfig.phoneHref} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-gold-dark hover:underline">
+                  <PhoneIcon className="h-3.5 w-3.5" /> התקשרו עכשיו
+                </a>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={180}>
+              <div className="rounded-xl bg-white ring-1 ring-charcoal/10 p-6 shadow-sm">
+                <h2 className="text-lg font-bold text-charcoal">מנעולן חירום ב{area.name} — 24/7</h2>
+                <p className="mt-2 text-sm text-charcoal/70 leading-relaxed">
+                  תקלה בשעה לא שעה? אנחנו זמינים {siteConfig.hoursShort} לכל קריאת חירום ב{area.name} — מענה אנושי ישיר, יציאה לדרך מיידית.
+                </p>
+                <a href={siteConfig.phoneHref} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-gold-dark hover:underline">
+                  <PhoneIcon className="h-3.5 w-3.5" /> חייגו עכשיו
+                </a>
+              </div>
+            </ScrollReveal>
+          </div>
+
           <ScrollReveal>
             <div className="mt-10 rounded-2xl bg-ink text-cream p-6 sm:p-8">
               <h2 className="text-xl font-bold">למה לבחור ב{siteConfig.name} ב{area.name}?</h2>

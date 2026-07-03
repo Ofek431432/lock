@@ -14,8 +14,8 @@ import {
 } from "@/components/icons";
 
 export const metadata: Metadata = {
-  title: "שירותי מנעולנות — פריצת דלתות, החלפת מנעולים, כספות וחירום",
-  description: `כל שירותי המנעולנות של ${siteConfig.name}: פריצת דלתות ומנעולים, החלפת צילינדרים ומנעולים, כספות ומנעולים לעסקים ושירות חירום 24/7 באזור חיפה והסביבה.`,
+  title: "שירותי מנעולנות בחיפה — פריצת דלתות, החלפת מנעולים, כספות וחירום",
+  description: `כל שירותי המנעולנות של ${siteConfig.name} בחיפה והסביבה: פריצת דלתות ומנעולים, החלפת צילינדרים ומנעולים, כספות ומנעולים לעסקים ושירות חירום 24/7. מחיר הוגן, הגעה מהירה.`,
   alternates: { canonical: "/services" },
 };
 
@@ -43,9 +43,9 @@ export default function ServicesPage() {
 
       <section className="bg-gradient-to-b from-ink to-surface text-cream">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
-          <h1 className="text-3xl sm:text-4xl font-extrabold">השירותים שלנו</h1>
+          <h1 className="text-3xl sm:text-4xl font-extrabold">שירותי מנעולנות בחיפה והסביבה</h1>
           <p className="mt-4 text-lg text-cream/75 max-w-2xl leading-relaxed">
-            מענה מקצועי לכל צורך מנעולנות — בבית, ברכב או בעסק. כל שירות מבוצע באופן נקי, מקצועי ובמחיר הוגן ושקוף.
+            פריצת דלתות, החלפת מנעולים וצילינדרים, כספות לעסקים ושירות חירום 24/7 — בחיפה, הקריות, נשר, עתלית וטירת כרמל. מחיר הוגן ושקוף, הגעה עד 30 דקות.
           </p>
         </div>
       </section>
