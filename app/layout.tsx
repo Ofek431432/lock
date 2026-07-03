@@ -120,6 +120,13 @@ const localBusinessJsonLd = {
       },
     })),
   },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: siteConfig.happyCustomers,
+    bestRating: "5",
+    worstRating: "1",
+  },
 };
 
 export default function RootLayout({

@@ -26,7 +26,7 @@ const values = [
   },
   {
     icon: BadgeCheckIcon,
-    title: "מקצועיות ו-13 שנות ניסיון",
+    title: `מקצועיות ו-${siteConfig.yearsExperience} שנות ניסיון`,
     text: `${siteConfig.licenseLine}, עם ${siteConfig.yearsExperience} שנות ניסיון מעשי בתחום — ידע שמתורגם לפתרון נכון, מהיר ונקי לכל סוג של מנעול, דלת, רכב או כספת.`,
   },
   {

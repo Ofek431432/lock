@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import { MenuIcon, PhoneIcon, XIcon } from "./icons";
@@ -16,6 +17,10 @@ const navLinks = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header className="sticky top-0 z-40 bg-ink/95 backdrop-blur border-b border-white/10 shadow-lg shadow-black/10">
@@ -31,7 +36,11 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="px-3 py-2 rounded-md text-sm font-medium text-cream/80 hover:text-gold hover:bg-white/5 transition-colors"
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isActive(link.href)
+                    ? "text-gold bg-white/8 font-bold"
+                    : "text-cream/80 hover:text-gold hover:bg-white/5"
+                }`}
               >
                 {link.label}
               </Link>
@@ -67,7 +76,11 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="px-3 py-2.5 rounded-md text-base font-medium text-cream/80 hover:text-gold hover:bg-white/5 transition-colors"
+                  className={`px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
+                    isActive(link.href)
+                      ? "text-gold bg-white/8 font-bold"
+                      : "text-cream/80 hover:text-gold hover:bg-white/5"
+                  }`}
                 >
                   {link.label}
                 </Link>

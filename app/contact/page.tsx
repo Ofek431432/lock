@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import Script from "next/script";
 import { serviceAreas, siteConfig } from "@/lib/site-config";
@@ -88,11 +89,13 @@ export default function ContactPage() {
                 <h2 className="mt-4 font-bold text-charcoal">אזורי השירות שלנו</h2>
                 <ul className="mt-3 flex flex-wrap gap-2">
                   {serviceAreas.map((a) => (
-                    <li
-                      key={a.slug}
-                      className="rounded-full bg-ivory ring-1 ring-charcoal/10 px-3.5 py-1.5 text-xs font-semibold text-charcoal"
-                    >
-                      {a.name}
+                    <li key={a.slug}>
+                      <Link
+                        href={`/areas/${a.slug}`}
+                        className="block rounded-full bg-ivory ring-1 ring-charcoal/10 px-3.5 py-1.5 text-xs font-semibold text-charcoal hover:ring-gold hover:text-gold-dark transition-all"
+                      >
+                        {a.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
