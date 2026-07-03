@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { articles } from "@/lib/articles";
 import { serviceAreas, services, siteConfig } from "@/lib/site-config";
-import { BadgeCheckIcon, ClockIcon, PhoneIcon, WhatsappIcon } from "./icons";
+import { BadgeCheckIcon, ClockIcon, PhoneIcon } from "./icons";
 
 const footerArticleSlugs = [
   "locked-out-of-home-guide",
@@ -79,17 +79,6 @@ export default function Footer() {
               <a href={siteConfig.phoneHref} className="inline-flex items-center gap-2 text-muted hover:text-cream transition-colors">
                 <PhoneIcon className="h-4 w-4" />
                 {siteConfig.phoneDisplay}
-              </a>
-            </li>
-            <li>
-              <a
-                href={siteConfig.whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-muted hover:text-[#25D366] transition-colors"
-              >
-                <WhatsappIcon className="h-4 w-4" />
-                ווטסאפ
               </a>
             </li>
             <li className="inline-flex items-center gap-2 text-muted">

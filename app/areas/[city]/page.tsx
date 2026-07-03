@@ -5,7 +5,7 @@ import Script from "next/script";
 import { getAreaBySlug, serviceAreas, services, siteConfig } from "@/lib/site-config";
 import { breadcrumbJsonLd } from "@/lib/json-ld";
 import ScrollReveal from "@/components/ScrollReveal";
-import { CheckIcon, PhoneIcon, WhatsappIcon } from "@/components/icons";
+import { CheckIcon, PhoneIcon } from "@/components/icons";
 
 export function generateStaticParams() {
   return serviceAreas.map((a) => ({ city: a.slug }));
@@ -101,15 +101,6 @@ export default async function AreaPage({
             >
               <PhoneIcon className="h-4 w-4" />
               {siteConfig.phoneDisplay}
-            </a>
-            <a
-              href={siteConfig.whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-bold text-white shadow-md hover:brightness-105 transition-all"
-            >
-              <WhatsappIcon className="h-4 w-4" />
-              ווטסאפ
             </a>
           </div>
         </div>

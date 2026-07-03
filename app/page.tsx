@@ -14,7 +14,6 @@ import {
   ShieldCheckIcon,
   StarIcon,
   UsersIcon,
-  WhatsappIcon,
   ZapIcon,
   type IconComponent,
 } from "@/components/icons";
@@ -82,15 +81,6 @@ export default function HomePage() {
             >
               <PhoneIcon className="h-5 w-5" />
               חייגו עכשיו: {siteConfig.phoneDisplay}
-            </a>
-            <a
-              href={siteConfig.whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-7 py-3.5 text-base font-bold text-white shadow-md hover:brightness-105 transition-all"
-            >
-              <WhatsappIcon className="h-5 w-5" />
-              שלחו ווטסאפ
             </a>
           </div>
         </div>
@@ -296,15 +286,6 @@ export default function HomePage() {
               >
                 <PhoneIcon className="h-5 w-5" />
                 חייגו עכשיו: {siteConfig.phoneDisplay}
-              </a>
-              <a
-                href={siteConfig.whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-8 py-4 text-lg font-bold text-white shadow-md hover:brightness-105 transition-all"
-              >
-                <WhatsappIcon className="h-5 w-5" />
-                שלחו ווטסאפ
               </a>
             </div>
           </ScrollReveal>
