@@ -5,6 +5,7 @@ import { services, serviceAreas, siteConfig } from "../lib/site-config";
 
 const ARTICLES_PATH = join(process.cwd(), "content/articles.json");
 const QUEUE_PATH = join(process.cwd(), "content/topic-queue.json");
+const READY_QUEUE_PATH = join(process.cwd(), "content/ready-queue.json");
 
 type RawArticle = Record<string, unknown> & {
   slug: string;
@@ -163,12 +164,45 @@ function validateArticle(article: RawArticle, existingSlugs: Set<string>): strin
   return errors;
 }
 
+async function publishOutput(slug: string, title: string) {
+  console.log(`Added article: ${slug} — ${title}`);
+  if (process.env.GITHUB_OUTPUT) {
+    writeFileSync(process.env.GITHUB_OUTPUT, `slug=${slug}\ntitle=${title}\n`, { flag: "a" });
+  }
+}
+
 async function main() {
   const articles = loadJson<RawArticle[]>(ARTICLES_PATH);
-  const queue = loadJson<TopicQueueItem[]>(QUEUE_PATH);
   const existingSlugs = new Set(articles.map((a) => a.slug));
-  const existingTitles = articles.map((a) => a.title as string);
+  const today = todayISO();
 
+  // Prefer pre-written articles in the ready queue (no API key needed)
+  const readyQueue = loadJson<RawArticle[]>(READY_QUEUE_PATH);
+  const nextReady = readyQueue.find((a) => !existingSlugs.has(a.slug)) ?? null;
+  if (nextReady) {
+    const errors = validateArticle(nextReady, existingSlugs);
+    if (errors.length > 0) {
+      console.error(`Ready queue article "${nextReady.slug}" failed validation: ${errors.join("; ")}`);
+      process.exit(1);
+    }
+    nextReady.publishedAt = today;
+    nextReady.updatedAt = today;
+    articles.push(nextReady);
+    writeFileSync(ARTICLES_PATH, JSON.stringify(articles, null, 2) + "\n");
+    const remainingReady = readyQueue.filter((a) => a.slug !== nextReady.slug);
+    writeFileSync(READY_QUEUE_PATH, JSON.stringify(remainingReady, null, 2) + "\n");
+    await publishOutput(nextReady.slug, nextReady.title as string);
+    return;
+  }
+
+  // Fall back to API generation when ready queue is exhausted
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error("Ready queue is empty and ANTHROPIC_API_KEY is not set. Replenish content/ready-queue.json or set the secret.");
+    process.exit(1);
+  }
+
+  const queue = loadJson<TopicQueueItem[]>(QUEUE_PATH);
+  const existingTitles = articles.map((a) => a.title as string);
   const nextTopic = queue.find((t) => !existingSlugs.has(t.slug)) ?? null;
 
   const client = new Anthropic();
@@ -194,7 +228,6 @@ async function main() {
     process.exit(1);
   }
 
-  const today = todayISO();
   article.publishedAt = today;
   article.updatedAt = today;
 
@@ -206,13 +239,7 @@ async function main() {
     writeFileSync(QUEUE_PATH, JSON.stringify(remainingQueue, null, 2) + "\n");
   }
 
-  console.log(`Added article: ${article.slug} — ${article.title}`);
-
-  if (process.env.GITHUB_OUTPUT) {
-    writeFileSync(process.env.GITHUB_OUTPUT, `slug=${article.slug}\ntitle=${article.title}\n`, {
-      flag: "a",
-    });
-  }
+  await publishOutput(article.slug, article.title as string);
 }
 
 main().catch((err) => {
