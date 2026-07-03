@@ -138,9 +138,7 @@ async function generateArticle(
   const response = await client.messages.create({
     model: "claude-opus-4-8",
     max_tokens: 4096,
-    thinking: { type: "adaptive" },
     output_config: {
-      effort: "high",
       format: { type: "json_schema", schema: articleSchema },
     },
     messages: [{ role: "user", content: prompt }],
