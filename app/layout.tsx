@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     description: siteConfig.subTagline,
     images: [
       {
-        url: "/api/og",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: `${siteConfig.name} — ${siteConfig.tagline}`,
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} | ${siteConfig.tagline}`,
     description: siteConfig.subTagline,
-    images: ["/api/og"],
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -83,7 +83,7 @@ const localBusinessJsonLd = {
   alternateName: siteConfig.nameEn,
   description: siteConfig.subTagline,
   url: siteConfig.domain,
-  image: `${siteConfig.domain}/api/og`,
+  image: `${siteConfig.domain}/og-image.jpg`,
   telephone: siteConfig.phoneHref.replace("tel:", ""),
   priceRange: "$$",
   areaServed: ["חיפה", "קריות", "נשר", "עתלית", "טירת כרמל"].map((name) => ({

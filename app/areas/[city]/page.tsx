@@ -27,7 +27,12 @@ export async function generateMetadata({
     title,
     description,
     alternates: { canonical: `/areas/${area.slug}` },
-    openGraph: { title, description, url: `${siteConfig.domain}/areas/${area.slug}` },
+    openGraph: {
+      title,
+      description,
+      url: `${siteConfig.domain}/areas/${area.slug}`,
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: siteConfig.name }],
+    },
   };
 }
 

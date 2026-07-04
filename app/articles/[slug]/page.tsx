@@ -32,6 +32,7 @@ export async function generateMetadata({
       url: `${siteConfig.domain}/articles/${article.slug}`,
       publishedTime: article.publishedAt,
       modifiedTime: article.updatedAt,
+      images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: siteConfig.name }],
     },
   };
 }
