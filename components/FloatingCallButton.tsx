@@ -3,14 +3,18 @@ import { PhoneIcon } from "./icons";
 
 export default function FloatingCallButton() {
   return (
-    <a
-      href={siteConfig.phoneHref}
-      aria-label={`חייגו עכשיו ל${siteConfig.name}: ${siteConfig.phoneDisplay}`}
-      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 inline-flex items-center gap-2 rounded-full bg-gold px-10 sm:px-8 py-4 text-lg font-bold text-ink shadow-xl shadow-gold/40 hover:bg-gold-dark hover:scale-[1.04] transition-all w-[90vw] sm:w-auto justify-center"
-      style={{ marginBottom: "env(safe-area-inset-bottom)" }}
+    <div
+      className="sm:hidden fixed bottom-0 inset-x-0 z-50 px-4 pb-4 pt-8 bg-gradient-to-t from-ink/25 to-transparent pointer-events-none"
+      style={{ paddingBottom: "calc(1rem + env(safe-area-inset-bottom))" }}
     >
-      <PhoneIcon className="h-5 w-5" />
-      חייגו עכשיו {siteConfig.phoneDisplay}
-    </a>
+      <a
+        href={siteConfig.phoneHref}
+        aria-label={`חייגו עכשיו ל${siteConfig.name}: ${siteConfig.phoneDisplay}`}
+        className="btn-lux ring-pulse pointer-events-auto flex w-full items-center justify-center gap-2.5 rounded-full px-8 py-4 text-lg font-extrabold text-ink"
+      >
+        <PhoneIcon className="h-5 w-5" />
+        חייגו עכשיו {siteConfig.phoneDisplay}
+      </a>
+    </div>
   );
 }

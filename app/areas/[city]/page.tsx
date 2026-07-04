@@ -5,7 +5,7 @@ import Script from "next/script";
 import { getAreaBySlug, serviceAreas, services, siteConfig } from "@/lib/site-config";
 import { breadcrumbJsonLd } from "@/lib/json-ld";
 import ScrollReveal from "@/components/ScrollReveal";
-import { CheckIcon, PhoneIcon } from "@/components/icons";
+import { CheckIcon, MapPinIcon, PhoneIcon } from "@/components/icons";
 
 export function generateStaticParams() {
   return serviceAreas.map((a) => ({ city: a.slug }));
@@ -72,6 +72,29 @@ export default async function AreaPage({
     `${siteConfig.licenseLine}, עם ${siteConfig.yearsExperience} שנות ניסיון ועבודה נקייה שאינה פוגעת בדלת, ברכב או במנעול`,
   ];
 
+  const localServices = [
+    {
+      title: `פתיחת דלתות ב${area.name}`,
+      text: `ננעלתם מבחוץ? אנחנו מגיעים לכל כתובת ב${area.name} במהירות ופותחים דלתות בלי לפגוע בדלת או במנעול. שירות ${siteConfig.hoursShort}.`,
+      cta: "התקשרו עכשיו",
+    },
+    {
+      title: `החלפת מנעולים ב${area.name}`,
+      text: `החלפת צילינדרים ומנעולים לכל סוגי הדלתות ב${area.name} — מבסיסי ועד high-security. מחיר הוגן, מסירת כל המפתחות, ואחריות על העבודה.`,
+      cta: "לקבלת מחיר",
+    },
+    {
+      title: `מנעולן לרכב ב${area.name}`,
+      text: `ננעלתם מחוץ לרכב ב${area.name}? פותחים רכבים בלי נזק, בכל שעה. גם שכפול מפתח ותיקון מנגנוני נעילה לרכב.`,
+      cta: "התקשרו עכשיו",
+    },
+    {
+      title: `מנעולן חירום ב${area.name} — 24/7`,
+      text: `תקלה בשעה לא שעה? אנחנו זמינים ${siteConfig.hoursShort} לכל קריאת חירום ב${area.name} — מענה אנושי ישיר, יציאה לדרך מיידית.`,
+      cta: "חייגו עכשיו",
+    },
+  ];
+
   return (
     <>
       <Script
@@ -87,17 +110,20 @@ export default async function AreaPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(areaBusinessJsonLd) }}
       />
 
-      <section className="bg-gradient-to-b from-ink to-surface text-cream">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
-          <p className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-cream/80 ring-1 ring-white/10">
+      <section className="hero-lux text-cream">
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
+          <p className="inline-flex items-center gap-2 rounded-full bg-white/5 ring-1 ring-white/10 px-4 py-1.5 text-sm font-medium text-cream/85 backdrop-blur-sm">
+            <MapPinIcon className="h-4 w-4 text-gold" />
             אזור שירות
           </p>
-          <h1 className="mt-4 text-3xl sm:text-4xl font-extrabold">מנעולן ב{area.name}</h1>
-          <p className="mt-4 text-lg text-cream/75 max-w-2xl leading-relaxed">{area.intro}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
+          <h1 className="mt-5 text-3xl sm:text-5xl font-extrabold leading-tight">
+            מנעולן <span className="gold-text">ב{area.name}</span>
+          </h1>
+          <p className="mt-5 text-lg text-cream/75 max-w-2xl leading-relaxed">{area.intro}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
             <a
               href={siteConfig.phoneHref}
-              className="inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-ink shadow-md shadow-gold/30 hover:bg-gold-dark transition-colors"
+              className="btn-lux inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-base font-bold text-ink"
             >
               <PhoneIcon className="h-4 w-4" />
               {siteConfig.phoneDisplay}
@@ -107,19 +133,20 @@ export default async function AreaPage({
       </section>
 
       <section className="bg-ivory">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-12 sm:py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
           <ScrollReveal>
-            <h2 className="text-2xl font-bold text-charcoal">שירותי מנעולנות ב{area.name}</h2>
-            <p className="mt-2 text-charcoal/70 max-w-2xl">
+            <p className="eyebrow">מה נוכל לעשות עבורכם</p>
+            <h2 className="mt-3 text-2xl sm:text-3xl font-bold text-charcoal">שירותי מנעולנות ב{area.name}</h2>
+            <p className="mt-3 text-charcoal/70 max-w-2xl leading-relaxed">
               אנחנו מספקים את כל השירותים הבאים לתושבי ולעסקי {area.name}, עם הגעה מהירה ויחס מקצועי:
             </p>
           </ScrollReveal>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((s, i) => (
-              <ScrollReveal key={s.slug} delay={i * 60}>
+              <ScrollReveal key={s.slug} delay={i * 60} className="h-full">
                 <Link
                   href={`/services#${s.slug}`}
-                  className="group block h-full rounded-xl bg-white ring-1 ring-charcoal/10 p-5 hover:ring-gold hover:shadow-md transition-all"
+                  className="card-lift group block h-full rounded-2xl bg-white ring-1 ring-charcoal/10 p-5 hover:ring-gold/40"
                 >
                   <h3 className="font-bold text-charcoal group-hover:text-gold-dark transition-colors">{s.name}</h3>
                   <p className="mt-1.5 text-sm text-charcoal/70 leading-relaxed">{s.short}</p>
@@ -129,76 +156,58 @@ export default async function AreaPage({
           </div>
 
           {/* Service + city keyword sections */}
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            <ScrollReveal>
-              <div className="rounded-xl bg-white ring-1 ring-charcoal/10 p-6 shadow-sm">
-                <h2 className="text-lg font-bold text-charcoal">פתיחת דלתות ב{area.name}</h2>
-                <p className="mt-2 text-sm text-charcoal/70 leading-relaxed">
-                  ננעלתם מבחוץ? אנחנו מגיעים לכל כתובת ב{area.name} במהירות ופותחים דלתות בלי לפגוע בדלת או במנעול. שירות {siteConfig.hoursShort}.
-                </p>
-                <a href={siteConfig.phoneHref} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-gold-dark hover:underline">
-                  <PhoneIcon className="h-3.5 w-3.5" /> התקשרו עכשיו
-                </a>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={60}>
-              <div className="rounded-xl bg-white ring-1 ring-charcoal/10 p-6 shadow-sm">
-                <h2 className="text-lg font-bold text-charcoal">החלפת מנעולים ב{area.name}</h2>
-                <p className="mt-2 text-sm text-charcoal/70 leading-relaxed">
-                  החלפת צילינדרים ומנעולים לכל סוגי הדלתות ב{area.name} — מבסיסי ועד high-security. מחיר הוגן, מסירת כל המפתחות, ואחריות על העבודה.
-                </p>
-                <a href={siteConfig.phoneHref} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-gold-dark hover:underline">
-                  <PhoneIcon className="h-3.5 w-3.5" /> לקבלת מחיר
-                </a>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={120}>
-              <div className="rounded-xl bg-white ring-1 ring-charcoal/10 p-6 shadow-sm">
-                <h2 className="text-lg font-bold text-charcoal">מנעולן לרכב ב{area.name}</h2>
-                <p className="mt-2 text-sm text-charcoal/70 leading-relaxed">
-                  ננעלתם מחוץ לרכב ב{area.name}? פותחים רכבים בלי נזק, בכל שעה. גם שכפול מפתח ותיקון מנגנוני נעילה לרכב.
-                </p>
-                <a href={siteConfig.phoneHref} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-gold-dark hover:underline">
-                  <PhoneIcon className="h-3.5 w-3.5" /> התקשרו עכשיו
-                </a>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={180}>
-              <div className="rounded-xl bg-white ring-1 ring-charcoal/10 p-6 shadow-sm">
-                <h2 className="text-lg font-bold text-charcoal">מנעולן חירום ב{area.name} — 24/7</h2>
-                <p className="mt-2 text-sm text-charcoal/70 leading-relaxed">
-                  תקלה בשעה לא שעה? אנחנו זמינים {siteConfig.hoursShort} לכל קריאת חירום ב{area.name} — מענה אנושי ישיר, יציאה לדרך מיידית.
-                </p>
-                <a href={siteConfig.phoneHref} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-gold-dark hover:underline">
-                  <PhoneIcon className="h-3.5 w-3.5" /> חייגו עכשיו
-                </a>
-              </div>
-            </ScrollReveal>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+            {localServices.map((item, i) => (
+              <ScrollReveal key={item.title} delay={i * 60} className="h-full">
+                <div className="card-lift h-full rounded-2xl bg-white ring-1 ring-charcoal/10 p-6 shadow-sm">
+                  <h2 className="text-lg font-bold text-charcoal">{item.title}</h2>
+                  <p className="mt-2 text-sm text-charcoal/70 leading-relaxed">{item.text}</p>
+                  <a
+                    href={siteConfig.phoneHref}
+                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-gold-dark hover:text-gold transition-colors"
+                  >
+                    <PhoneIcon className="h-3.5 w-3.5" /> {item.cta}
+                  </a>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
 
           <ScrollReveal>
-            <div className="mt-10 rounded-2xl bg-ink text-cream p-6 sm:p-8">
-              <h2 className="text-xl font-bold">למה לבחור ב{siteConfig.name} ב{area.name}?</h2>
-              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                {whyHere.map((point) => (
-                  <li key={point} className="flex items-start gap-2 text-sm text-cream/75">
-                    <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="hero-lux mt-10 rounded-3xl text-cream p-7 sm:p-10">
+              <div className="relative">
+                <h2 className="text-2xl font-bold">למה לבחור ב{siteConfig.name} ב{area.name}?</h2>
+                <ul className="mt-5 grid gap-3.5 sm:grid-cols-2">
+                  {whyHere.map((point) => (
+                    <li key={point} className="flex items-start gap-2.5 text-sm text-cream/75">
+                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold">
+                        <CheckIcon className="h-3 w-3" />
+                      </span>
+                      <span className="leading-relaxed">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={siteConfig.phoneHref}
+                  className="btn-lux mt-7 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-ink"
+                >
+                  <PhoneIcon className="h-4 w-4" />
+                  חייגו עכשיו: {siteConfig.phoneDisplay}
+                </a>
+              </div>
             </div>
           </ScrollReveal>
 
-          <div className="mt-10">
+          <div className="mt-12">
             <h2 className="text-lg font-bold text-charcoal">אזורי שירות נוספים</h2>
             <div className="mt-4 flex flex-wrap gap-3">
               {otherAreas.map((a) => (
                 <Link
                   key={a.slug}
                   href={`/areas/${a.slug}`}
-                  className="rounded-full bg-white ring-1 ring-charcoal/10 px-5 py-2.5 text-sm font-semibold text-charcoal hover:ring-gold hover:text-gold-dark hover:shadow-md transition-all"
+                  className="inline-flex items-center gap-2 rounded-full bg-white ring-1 ring-charcoal/10 px-5 py-2.5 text-sm font-semibold text-charcoal hover:ring-gold hover:text-gold-dark hover:shadow-md transition-all"
                 >
+                  <MapPinIcon className="h-4 w-4 text-gold-dark" />
                   מנעולן ב{a.name}
                 </Link>
               ))}

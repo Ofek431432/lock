@@ -48,10 +48,13 @@ export default function ArticlesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
       />
 
-      <section className="bg-gradient-to-b from-ink to-surface text-cream">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
-          <h1 className="text-3xl sm:text-4xl font-extrabold">מאמרים ומדריכי מנעולנות</h1>
-          <p className="mt-4 text-lg text-cream/75 max-w-2xl leading-relaxed">
+      <section className="hero-lux text-cream">
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
+          <p className="eyebrow eyebrow-dark">ידע מהשטח</p>
+          <h1 className="mt-4 text-3xl sm:text-5xl font-extrabold leading-tight">
+            מאמרים <span className="gold-text">ומדריכי מנעולנות</span>
+          </h1>
+          <p className="mt-5 text-lg text-cream/75 max-w-2xl leading-relaxed">
             טיפים מעשיים, הסברים ברורים ומדריכים מקצועיים בנושאי מנעולים, אבטחת בית ועסק ומצבי חירום —
             כתובים מתוך ניסיון של {siteConfig.yearsExperience} שנים בשטח, כדי שתדעו בדיוק מה לעשות לפני שמתעורר צורך.
           </p>

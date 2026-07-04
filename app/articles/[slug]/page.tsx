@@ -106,23 +106,27 @@ export default async function ArticlePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      <section className="bg-gradient-to-b from-ink to-surface text-cream">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 py-14 sm:py-20">
-          <nav className="text-sm text-cream/60">
-            <Link href="/articles" className="hover:text-gold transition-colors">
+      <section className="hero-lux text-cream">
+        <div className="relative mx-auto max-w-3xl px-4 sm:px-6 py-14 sm:py-20">
+          <nav className="flex items-center gap-2 text-sm text-cream/60">
+            <Link href="/articles" className="hover:text-gold-light transition-colors">
               מאמרים
             </Link>
-            <span className="mx-2">/</span>
-            <span className="text-cream/80">{article.category}</span>
+            <span aria-hidden>/</span>
+            <span className="rounded-full bg-gold/15 ring-1 ring-gold/25 px-3 py-0.5 text-xs font-semibold text-gold">
+              {article.category}
+            </span>
           </nav>
-          <h1 className="mt-4 text-2xl sm:text-4xl font-extrabold leading-tight">{article.title}</h1>
-          <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-cream/65">
+          <h1 className="mt-5 text-2xl sm:text-4xl font-extrabold leading-tight sm:leading-tight">
+            {article.title}
+          </h1>
+          <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-cream/65">
             <span>פורסם: {formatDate(article.publishedAt)}</span>
             <span aria-hidden>•</span>
             <span>עודכן: {formatDate(article.updatedAt)}</span>
             <span aria-hidden>•</span>
             <span className="inline-flex items-center gap-1">
-              <ClockIcon className="h-4 w-4" />
+              <ClockIcon className="h-4 w-4 text-gold/80" />
               {article.readMinutes} דקות קריאה
             </span>
           </div>
@@ -145,7 +149,10 @@ export default async function ArticlePage({
             {article.sections.map((section, i) => (
               <ScrollReveal key={section.heading} delay={Math.min(i, 4) * 60}>
                 <section>
-                  <h2 className="text-xl sm:text-2xl font-bold text-charcoal">{section.heading}</h2>
+                  <h2 className="flex items-start gap-3 text-xl sm:text-2xl font-bold text-charcoal">
+                    <span className="mt-2.5 h-4 w-1 shrink-0 rounded-full bg-gradient-to-b from-gold-light to-gold-dark" aria-hidden />
+                    {section.heading}
+                  </h2>
                   <div className="mt-3 space-y-3 text-charcoal/80 leading-relaxed">
                     {section.paragraphs.map((p, j) => (
                       <p key={j}>{p}</p>
@@ -168,11 +175,13 @@ export default async function ArticlePage({
 
           {/* FAQ */}
           <ScrollReveal>
-            <div className="mt-12 rounded-2xl bg-white ring-1 ring-charcoal/10 p-6 sm:p-8">
-              <h2 className="text-xl font-bold text-charcoal">שאלות נפוצות</h2>
-              <div className="mt-5 space-y-5">
+            <div className="relative mt-12 overflow-hidden rounded-3xl bg-white ring-1 ring-charcoal/10 p-6 sm:p-9 shadow-sm">
+              <div className="hairline-gold absolute top-0 inset-x-0" aria-hidden />
+              <p className="eyebrow">עונים לכם</p>
+              <h2 className="mt-2 text-2xl font-bold text-charcoal">שאלות נפוצות</h2>
+              <div className="mt-6 divide-y divide-charcoal/5">
                 {article.faq.map((item) => (
-                  <div key={item.question}>
+                  <div key={item.question} className="py-4 first:pt-0 last:pb-0">
                     <h3 className="font-semibold text-charcoal">{item.question}</h3>
                     <p className="mt-1.5 text-sm text-charcoal/75 leading-relaxed">{item.answer}</p>
                   </div>
@@ -209,29 +218,32 @@ export default async function ArticlePage({
 
           {/* Closing CTA */}
           <ScrollReveal>
-            <div className="mt-10 rounded-2xl bg-ink text-cream p-6 sm:p-8 text-center">
-              <h2 className="text-xl font-bold">צריכים מנעולן עכשיו?</h2>
-              <p className="mt-2 text-cream/70">{siteConfig.tagline}</p>
-              <a
-                href={siteConfig.phoneHref}
-                className="mt-5 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-bold text-ink shadow-md shadow-gold/30 hover:bg-gold-dark transition-colors"
-              >
-                <PhoneIcon className="h-4 w-4" />
-                חייגו עכשיו: {siteConfig.phoneDisplay}
-              </a>
+            <div className="hero-lux mt-10 rounded-3xl text-cream p-7 sm:p-10 text-center">
+              <div className="relative">
+                <h2 className="text-2xl font-bold">צריכים מנעולן עכשיו?</h2>
+                <p className="mt-2 text-cream/70">{siteConfig.tagline}</p>
+                <a
+                  href={siteConfig.phoneHref}
+                  className="btn-lux mt-6 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-base font-bold text-ink"
+                >
+                  <PhoneIcon className="h-4 w-4" />
+                  חייגו עכשיו: {siteConfig.phoneDisplay}
+                </a>
+              </div>
             </div>
           </ScrollReveal>
 
           {/* Related articles */}
           {related.length > 0 && (
             <div className="mt-14">
-              <h2 className="text-lg font-bold text-charcoal">מאמרים נוספים שיכולים לעניין אתכם</h2>
+              <p className="eyebrow">המשך קריאה</p>
+              <h2 className="mt-2 text-lg font-bold text-charcoal">מאמרים נוספים שיכולים לעניין אתכם</h2>
               <div className="mt-5 grid gap-4 sm:grid-cols-3">
                 {related.map((r) => (
                   <Link
                     key={r.slug}
                     href={`/articles/${r.slug}`}
-                    className="group block h-full rounded-xl bg-white ring-1 ring-charcoal/10 p-5 hover:ring-gold hover:shadow-md transition-all"
+                    className="card-lift group block h-full rounded-2xl bg-white ring-1 ring-charcoal/10 p-5 hover:ring-gold/40"
                   >
                     <span className="text-xs font-semibold text-gold-dark">{r.category}</span>
                     <h3 className="mt-1.5 font-bold text-charcoal text-sm leading-snug group-hover:text-gold-dark transition-colors">

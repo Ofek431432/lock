@@ -144,6 +144,16 @@ export function XIcon({ className }: IconProps) {
   );
 }
 
+export function KeyholeIcon({ className }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <circle cx="12" cy="12" r="10" />
+      <circle cx="12" cy="9.5" r="2.6" />
+      <path d="M10.8 11.8 9.8 16.5h4.4l-1-4.7" />
+    </svg>
+  );
+}
+
 export function WhatsappIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
