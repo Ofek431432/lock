@@ -76,32 +76,21 @@ export default function HomePage() {
           aria-hidden
         />
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-20 sm:py-32">
-          <p className="inline-flex items-center gap-2.5 rounded-full bg-white/5 ring-1 ring-white/10 px-4 py-1.5 text-sm font-medium text-cream/85 backdrop-blur-sm">
-            <span className="pulse-dot" aria-hidden />
-            זמינים עכשיו — מענה אנושי ישיר, 24/7
-          </p>
-          <h1 className="mt-6 text-4xl sm:text-6xl font-extrabold leading-[1.12] sm:leading-[1.08] max-w-3xl">
+          <h1 className="text-4xl sm:text-6xl font-extrabold leading-[1.12] sm:leading-[1.08] max-w-3xl">
             מנעולן בחיפה והקריות —{" "}
             <span className="gold-text">{siteConfig.name}</span>
           </h1>
           <p className="mt-6 text-lg sm:text-xl text-cream/80 max-w-xl leading-relaxed">
             {siteConfig.subTagline}
           </p>
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a
-              href={siteConfig.phoneHref}
-              className="btn-lux inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-lg font-extrabold text-ink"
-            >
-              <PhoneIcon className="h-5 w-5" />
-              חייגו עכשיו: {siteConfig.phoneDisplay}
-            </a>
-            <Link
-              href="/services"
-              className="btn-ghost-dark inline-flex items-center gap-2 rounded-full px-6 py-4 text-base font-semibold text-cream"
-            >
-              לכל השירותים ←
-            </Link>
-          </div>
+          <ul className="mt-9 flex flex-wrap items-center gap-x-3.5 gap-y-2.5 text-base sm:text-xl font-bold text-cream/95">
+            {["החלפת מנעולים", "פריצת דלתות", "פתיחת רכבים", "כספות לעסקים", "ועוד"].map((s, i) => (
+              <li key={s} className="flex items-center gap-x-3.5">
+                {i > 0 && <span className="h-1.5 w-1.5 rounded-full bg-gold" aria-hidden />}
+                {s}
+              </li>
+            ))}
+          </ul>
           <ul className="mt-10 flex flex-wrap gap-x-7 gap-y-3">
             {heroChips.map((chip) => (
               <li key={chip.label} className="inline-flex items-center gap-2 text-sm font-medium text-cream/70">
