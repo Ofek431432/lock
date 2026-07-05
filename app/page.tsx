@@ -62,8 +62,6 @@ const testimonials = [
 
 const heroChips = [
   { icon: BadgeCheckIcon, label: siteConfig.licenseLine },
-  { icon: ZapIcon, label: `הגעה עד ${siteConfig.arrivalMinutes} דקות` },
-  { icon: StarIcon, label: "4.9 דירוג לקוחות" },
 ];
 
 export default function HomePage() {

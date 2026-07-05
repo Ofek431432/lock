@@ -34,7 +34,7 @@ export const siteConfig = {
 export const stats = [
   { value: siteConfig.yearsExperience, suffix: "", label: "שנות ניסיון" },
   { value: siteConfig.happyCustomers, suffix: "+", label: "לקוחות מרוצים" },
-  { value: siteConfig.arrivalMinutes, suffix: "", label: "דקות הגעה בממוצע" },
+  { value: 15, suffix: "", label: "דקות הגעה בממוצע" },
   { value: 24, suffix: "/7", label: "זמינות מסביב לשעון" },
 ];
 
