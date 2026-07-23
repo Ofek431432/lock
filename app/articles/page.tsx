@@ -8,6 +8,13 @@ import ArticlesFilter from "@/components/ArticlesFilter";
 export const metadata: Metadata = {
   title: "מאמרים ומדריכי מנעולנות — טיפים ומידע מקצועי",
   description: `מדריכים ומאמרים מקצועיים בנושאי מנעולנות, אבטחת בית ועסק, ופתרונות למצבי חירום — מאת הצוות של ${siteConfig.name}, מנעולן בחיפה והסביבה.`,
+  keywords: [
+    "מאמרי מנעולנות",
+    "מדריכי מנעולנות",
+    "החלפת מנעול בדירה",
+    "מנעולן בחיפה",
+    "מנעולן 24 שעות",
+  ],
   alternates: { canonical: "/articles" },
 };
 

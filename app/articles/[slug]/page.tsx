@@ -63,10 +63,15 @@ export default async function ArticlePage({
     "@type": "Article",
     headline: article.title,
     description: article.description,
+    image: `${siteConfig.domain}/og-image.jpg`,
     datePublished: article.publishedAt,
     dateModified: article.updatedAt,
     author: { "@type": "Organization", name: siteConfig.name },
-    publisher: { "@type": "Organization", name: siteConfig.name },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      logo: { "@type": "ImageObject", url: `${siteConfig.domain}/og-image.jpg` },
+    },
     mainEntityOfPage: `${siteConfig.domain}/articles/${article.slug}`,
   };
 

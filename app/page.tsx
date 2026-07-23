@@ -24,6 +24,14 @@ import {
 export const metadata: Metadata = {
   title: `${siteConfig.name} — מנעולן בחיפה והקריות, זמין 24/7`,
   description: `מנעולן מקצועי ואמין בחיפה, קריות, נשר, עתלית וטירת כרמל. פריצת דלתות, החלפת מנעולים, כספות לעסקים ושירות חירום 24/7. ${siteConfig.hoursLong}. התקשרו: ${siteConfig.phoneDisplay}`,
+  keywords: [
+    "מנעולן בחיפה",
+    "מנעולן 24 שעות",
+    "מנעולן חירום",
+    "החלפת מנעול בדירה",
+    "מנעולן לעסקים",
+    "פתיחת דלתות בחיפה",
+  ],
   alternates: { canonical: "/" },
 };
 
